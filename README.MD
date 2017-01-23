@@ -5,4 +5,20 @@
 
 ## POCS
 
-**Netduino 3 Wifi**
+**Netduino 3 Wifi  + Heroku App**
+> Still on development
+
+
+  
+    
+## Third Party Libraries
+
+**Web Server forked by Myself:**  
+Originally from:  
+>https://github.com/Rinsen/WebServer.git  
+
+Forked and improved by:  
+>https://github.com/JakeLardinois/WebServer.git
+
+
+
