@@ -3,5 +3,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DeployTransport>USB</DeployTransport>
     <DeployDevice>Netduino</DeployDevice>
+    <MF_GenerateStubs>False</MF_GenerateStubs>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
 </Project>

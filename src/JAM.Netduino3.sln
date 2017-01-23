@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\README.MD = ..\README.MD
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rd Party", "3rd Party", "{F9494F13-414E-4A24-8F1C-129F8D7EFA03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rinsen.WebServer", "..\..\3rd\WebServer\Rinsen.WebServer\Rinsen.WebServer.csproj", "{6BFC7545-24EF-4C5B-9EDE-3EC99CDB86E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +36,10 @@ Global
 		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6BFC7545-24EF-4C5B-9EDE-3EC99CDB86E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BFC7545-24EF-4C5B-9EDE-3EC99CDB86E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BFC7545-24EF-4C5B-9EDE-3EC99CDB86E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BFC7545-24EF-4C5B-9EDE-3EC99CDB86E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,5 +47,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{864FDA21-002C-442E-8479-7E5F2832541D} = {BE47B60F-45DB-4CEC-9DF7-2ABDD7308C16}
 		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE} = {457BD117-7EB9-48FD-AC97-E4ADD9546DE6}
+		{6BFC7545-24EF-4C5B-9EDE-3EC99CDB86E4} = {F9494F13-414E-4A24-8F1C-129F8D7EFA03}
 	EndGlobalSection
 EndGlobal

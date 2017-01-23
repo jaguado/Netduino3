@@ -8,7 +8,8 @@ namespace JAM.Netduino3.App
     {
         public static void Main()
         {
-            Debug.Print(Resources.GetString(Resources.StringResources.String1));
+            var webServer = new WebServerHelper();
+            webServer.StartServer(80);
             Thread.Sleep(Timeout.Infinite);
         }
     }
