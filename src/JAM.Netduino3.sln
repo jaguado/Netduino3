@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "JAM.Netduino3.Web", "JAM.Netduino3.Web\JAM.Netduino3.Web.xproj", "{864FDA21-002C-442E-8479-7E5F2832541D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{BE47B60F-45DB-4CEC-9DF7-2ABDD7308C16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{457BD117-7EB9-48FD-AC97-E4ADD9546DE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JAM.Netduino3.App", "JAM.Netduino3.App\JAM.Netduino3.App.csproj", "{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3B8EEBE5-4C4B-4F79-8ACD-125082178C86}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.MD = ..\README.MD
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{864FDA21-002C-442E-8479-7E5F2832541D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{864FDA21-002C-442E-8479-7E5F2832541D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{864FDA21-002C-442E-8479-7E5F2832541D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{864FDA21-002C-442E-8479-7E5F2832541D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{864FDA21-002C-442E-8479-7E5F2832541D} = {BE47B60F-45DB-4CEC-9DF7-2ABDD7308C16}
+		{3A4E5615-1F9F-446F-A5C6-90D24C4C99BE} = {457BD117-7EB9-48FD-AC97-E4ADD9546DE6}
+	EndGlobalSection
+EndGlobal
