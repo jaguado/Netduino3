@@ -37,7 +37,7 @@ namespace JAM.Netduino3.Helpers
                 using(var res = wr.GetResponse())
                 {
                     var sr=new StreamReader(res.GetResponseStream());
-                    Debug.Print("DDNS update status: " + sr.ReadToEnd());
+                    Debug.Print("DDNS update status: " + sr.ReadToEnd().Trim());
                 }
             }
         }

@@ -8,4 +8,8 @@
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <DeployTransport>USB</DeployTransport>
+    <DeployDevice>Netduino</DeployDevice>
+  </PropertyGroup>
 </Project>

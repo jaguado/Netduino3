@@ -37,12 +37,16 @@
   <ItemGroup>
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Enviroment.cs" />
+    <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\DDNS.cs" />
+    <Compile Include="Helpers\IO.cs" />
     <Compile Include="Helpers\Ntp.cs" />
+    <Compile Include="Helpers\Toolbox\StringDictionary.cs" />
     <Compile Include="Helpers\Toolbox\base64.cs" />
     <Compile Include="Helpers\Toolbox\HTTP_Client.cs" />
     <Compile Include="Helpers\Toolbox\IntegratedSocket.cs" />
     <Compile Include="Helpers\Toolbox\SimpleSocket.cs" />
+    <Compile Include="Helpers\Toolbox\StringHelpers.cs" />
     <Compile Include="Helpers\Toolbox\Tools.cs" />
     <Compile Include="NetHelper.cs" />
     <Compile Include="SdHelper.cs" />
@@ -54,9 +58,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="WebServerHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Graphics" />
+    <Reference Include="Microsoft.SPOT.IO" />
     <Reference Include="Microsoft.SPOT.Native" />
     <Reference Include="Microsoft.SPOT.Net" />
     <Reference Include="System" />
