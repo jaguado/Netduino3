@@ -35,6 +35,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Enviroment.cs" />
+    <Compile Include="Helpers\DDNS.cs" />
+    <Compile Include="Helpers\Ntp.cs" />
+    <Compile Include="Helpers\Toolbox\base64.cs" />
+    <Compile Include="Helpers\Toolbox\HTTP_Client.cs" />
+    <Compile Include="Helpers\Toolbox\IntegratedSocket.cs" />
+    <Compile Include="Helpers\Toolbox\SimpleSocket.cs" />
+    <Compile Include="Helpers\Toolbox\Tools.cs" />
+    <Compile Include="NetHelper.cs" />
+    <Compile Include="SdHelper.cs" />
     <Compile Include="System.Diagnostics.Fix.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
@@ -43,11 +53,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="WebServerHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Graphics" />
     <Reference Include="Microsoft.SPOT.Native" />
+    <Reference Include="Microsoft.SPOT.Net" />
+    <Reference Include="System" />
+    <Reference Include="System.Http" />
+    <Reference Include="System.IO" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
@@ -60,10 +73,21 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\3rd\WebServer\Rinsen.WebServer\Rinsen.WebServer.csproj">
-      <Project>{6BFC7545-24EF-4C5B-9EDE-3EC99CDB86E4}</Project>
-      <Name>Rinsen.WebServer</Name>
+    <Content Include="Resources\Scripts\jquery.js" />
+    <Content Include="Resources\Scripts\knockout.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\3rd\MicroWebServer\MicroWebServer\MicroWebServer.csproj">
+      <Project>{50AA3C37-4192-4D97-84D5-3420AF85E5BC}</Project>
+      <Name>MicroWebServer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JAM.Netduino3.dto\JAM.Netduino3.dto.csproj">
+      <Project>{B43286D5-7A1F-4E33-8243-D59D5B96FD26}</Project>
+      <Name>JAM.Netduino3.dto</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
   </ItemGroup>
   <Import Condition="EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <Import Condition="!EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -32,7 +32,10 @@ namespace JAM.Netduino3.App
         [System.SerializableAttribute()]
         internal enum StringResources : short
         {
+            ScriptsJqueryJs = -16270,
+            ScriptsKnockoutJs = -9660,
             String1 = 1228,
+            TestHtml = 30015,
         }
     }
 }

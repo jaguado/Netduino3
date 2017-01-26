@@ -1,5 +1,10 @@
 using System.Threading;
-using Rinsen.WebServer;
+using System;
+using Microsoft.SPOT;
+using MicroWebServer.Mvc;
+using System.Reflection;
+using MicroWebServer;
+using System.IO;
 
 namespace JAM.Netduino3.App
 {
@@ -7,31 +12,54 @@ namespace JAM.Netduino3.App
     {
         public static void Main()
         {
-            var webServer = new WebServerHelper();
-            webServer.StartServer(80);
-            webServer.RouteTable.DefaultControllerName = "MyFirst";
-            webServer.RouteTable.DefaultMethodName = "Index";
+            
+            try
+            {
+                Debug.EnableGCMessages(true);
+                NetHelper.WaitForWifi();
+
+                //Update date and time
+                var timeUpdated = Helpers.Ntp.UpdateTimeFromNtpServer("pool.ntp.org",-3);
+                Debug.Print("Fecha y hora: " + DateTime.Now);
+
+                //Update DDNS
+                Helpers.DDNS.ActualizarDNS();
+                Debug.Print("DDNS actualizado");
+
+
+                //Rinsen.WebServer
+                //var webServer = new WebServerHelper();
+                //webServer.StartServer(80);
+                //webServer.RouteTable.DefaultControllerName = "MyFirst";
+                //webServer.RouteTable.DefaultMethodName = "Index
+
+                //MicroWebServer
+                var server = new MvcHttpServer("http", 80);
+                var routes = server.Routes;
+
+                routes.MapApiRoute("api", Assembly.GetAssembly(typeof(Program)));
+                routes.MapResourceRoute("/test.html", new Resource(Resources.ResourceManager, Resources.StringResources.TestHtml) { ContentType = "text/html" });
+                routes.MapResourceRoute("/scripts/jquery.js", new Resource(Resources.ResourceManager, Resources.StringResources.ScriptsJqueryJs) { ContentType = "text/javascript" });
+                routes.MapResourceRoute("/scripts/knockout.js", new Resource(Resources.ResourceManager, Resources.StringResources.ScriptsKnockoutJs) { ContentType = "text/javascript" });
+
+                Debug.Print("Memory: " + Microsoft.SPOT.Debug.GC(false).ToString());
+            }
+            catch(Exception ex)
+            {
+                Debug.Print("WebServer error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
+            }
+
+            Debug.Print("Going to sleep");
             Thread.Sleep(Timeout.Infinite);
         }
-    }
 
-    public class MyFirstController : Controller
-    {
-        public void Index()
-        {
-            var res = new Result
-            {
-                Name="TestName", Value="TestValue"
-            };
-
-            SetJsonResult(res);
-        }
-    }
-
-    public class Result
-    {
-        public string Name { set; get; }
-        public string Value { set; get; }
+        /// <summary>
+        /// Returns a list of folders. 
+        /// This function expects the SD card to be mounted.
+        /// </summary>
+        /// <param name="currentFolder">Current folder to enumerate from</param>
+        /// <returns>List of folders</returns>
+        
     }
 }
     
