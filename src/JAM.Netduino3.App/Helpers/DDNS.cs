@@ -30,9 +30,9 @@ namespace JAM.Netduino3.Helpers
             return string.Empty;
         }
 
-        public static void ActualizarDNS()
+        public static void ActualizarDNS(string url)
         {
-            using (var wr = HttpWebRequest.Create("https://freedns.afraid.org/dynamic/update.php?VDFsai1hMzFVMVVBQUE0MXRYazoxNjU5MjAyMQ=="))
+            using (var wr = HttpWebRequest.Create(url))
             {
                 using(var res = wr.GetResponse())
                 {

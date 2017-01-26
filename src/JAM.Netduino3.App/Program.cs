@@ -16,14 +16,15 @@ namespace JAM.Netduino3.App
             try
             {
                 Debug.EnableGCMessages(true);
+
                 NetHelper.WaitForWifi();
 
                 //Update date and time
-                var timeUpdated = Helpers.Ntp.UpdateTimeFromNtpServer("pool.ntp.org",-3);
+                var timeUpdated = Helpers.Ntp.UpdateTimeFromNtpServer(ConfigHelper.NtpServer, ConfigHelper.TimeZone);
                 Debug.Print("Fecha y hora: " + DateTime.Now);
 
                 //Update DDNS
-                Helpers.DDNS.ActualizarDNS();
+                Helpers.DDNS.ActualizarDNS(ConfigHelper.DdnsUpdateUrl);
                 Debug.Print("DDNS actualizado");
 
 
