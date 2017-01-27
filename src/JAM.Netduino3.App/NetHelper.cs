@@ -1,6 +1,3 @@
-using System;
-using Microsoft.SPOT;
-using Microsoft.SPOT.Net;
 using System.Net;
 
 namespace JAM.Netduino3.App

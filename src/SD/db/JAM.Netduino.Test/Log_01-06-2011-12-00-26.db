@@ -1,0 +1,3 @@
+[{"Fecha":"06/01/2011 00:00:26","Contenido":"0.0.0.0","Descripcion":"Error: No se pudo obtener la fecha y hora","Origen":"JAM.Netduino.core.Main"}]
+[{"Fecha":"06/01/2011 00:00:26","Contenido":"0.0.0.0","Descripcion":"Inicio","Origen":"JAM.Netduino.core.testDB"}]
+[{"Fecha":"06/01/2011 00:00:26","Contenido":"192.168.0.13","Descripcion":"DNS Actualizado","Origen":"JAM.Netduino.core.ActualizarDNS"}]

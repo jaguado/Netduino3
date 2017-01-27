@@ -13,7 +13,7 @@ namespace JAM.Netduino3.Helpers
 
         public Config()
         {
-            ConfigurationFileFullPath = @"SD\webroot2\config.ini";
+            ConfigurationFileFullPath = @"SD\webroot\config.ini";
             ReadConfiguration();
         }
         public Config(string configurationFile)

@@ -1,6 +1,7 @@
 using System.Threading;
 using System;
 using Microsoft.SPOT;
+using System.Net;
 
 namespace JAM.Netduino3.App
 {
@@ -18,6 +19,7 @@ namespace JAM.Netduino3.App
 
                 //Wifi
                 Debug.Print("Esperando Wifi");
+                Microsoft.SPOT.Net.NetworkInformation.NetworkInterface NI = Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()[0];
                 NetHelper.WaitForWifi();
                 
                 //Update date and time
@@ -29,7 +31,7 @@ namespace JAM.Netduino3.App
                 Debug.Print("DDNS actualizado");
 
                 //WebServer
-                var web = new WebServerHelper(int.Parse(config[ConfigConstants.WebServerPort]));
+                var web = new Helpers.WebServerHelper(int.Parse(config[ConfigConstants.WebServerPort]));
                 Debug.Print("WebServer iniciado en http://" + web.Ip + ":" + web.Port);
 
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());

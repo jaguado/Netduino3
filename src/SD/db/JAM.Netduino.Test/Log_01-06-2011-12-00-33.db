@@ -1,0 +1,4 @@
+[{"Fecha":"06/01/2011 00:00:33","Contenido":"192.168.0.11","Descripcion":"DNS Actualizado","Origen":"JAM.Netduino.core.ActualizarDNS"}]
+[{"Fecha":"06/01/2011 00:00:33","Contenido":"0.0.0.0","Descripcion":"Inicio","Origen":"JAM.Netduino.core.testDB"}]
+[{"Fecha":"06/01/2011 00:00:33","Contenido":"0.0.0.0","Descripcion":"Servidor web inicializado","Origen":"JAM.Netduino.core.web"}]
+[{"Fecha":"06/01/2011 00:00:33","Contenido":"0.0.0.0","Descripcion":"Memoria disponible: 113688","Origen":"JAM.Netduino.core.Main"}]

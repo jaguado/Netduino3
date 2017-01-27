@@ -1,11 +1,9 @@
-using System;
-using Microsoft.SPOT;
 using System.IO;
 using System.Collections;
 
 namespace JAM.Netduino3.App
 {
-   public static class SdHelper
+    public static class SdHelper
         {
             public static string[] GetFiles(string extension)
             {

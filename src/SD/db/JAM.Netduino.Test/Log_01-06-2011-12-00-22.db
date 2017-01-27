@@ -1,0 +1,22 @@
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"0.0.0.0","Descripcion":"Error: Exception was thrown: System.Net.Sockets.SocketException Netduino.IP.LinkLayers.CC3100::sl_NetAppDnsGetHostByName
+Netduino.IP.LinkLayers.CC3100SocketNative::getaddrinfo
+Netduino.IP.LinkLayers.CC3100SocketNative::getaddrinfo_reflection
+System.Reflection.MethodBase::Invoke
+Microsoft.SPOT.Net.SocketNative::getaddrinfo
+System.Net.Dns::GetHostEntry
+Toolbox.NETMF.NET.IntegratedSocket::Connect
+Toolbox.NETMF.NET.HTTP_Client::_DoRequest
+Toolbox.NETMF.NET.HTTP_Client::Get
+JAM.Netduino.Funciones.DDNS::ActualizarDNS
+JAM.Netduino.Test.Program::ActualizarDNS
+JAM.Netduino.Test.Program::Main
+","Origen":"JAM.Netduino.core.ActualizarDNS"}]
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"192.168.0.13","Descripcion":"Servidor web inicializado","Origen":"JAM.Netduino.core.web"}]
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"192.168.0.13","Descripcion":"Memoria disponible: 115164","Origen":"JAM.Netduino.core.Main"}]
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"192.168.0.13","Descripcion":"DNS Actualizado","Origen":"JAM.Netduino.core.ActualizarDNS"}]
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"192.168.0.13","Descripcion":"Servidor web inicializado","Origen":"JAM.Netduino.core.web"}]
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"192.168.0.13","Descripcion":"Memoria disponible: 115788","Origen":"JAM.Netduino.core.Main"}]
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"0.0.0.0","Descripcion":"Error: No se pudo obtener la fecha y hora","Origen":"JAM.Netduino.core.Main"}]
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"0.0.0.0","Descripcion":"Error: No se pudo obtener la fecha y hora","Origen":"JAM.Netduino.core.Main"}]
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"0.0.0.0","Descripcion":"Error: No se pudo obtener la fecha y hora","Origen":"JAM.Netduino.core.Main"}]
+[{"Fecha":"06/01/2011 00:00:22","Contenido":"0.0.0.0","Descripcion":"Error: No se pudo obtener la fecha y hora","Origen":"JAM.Netduino.core.Main"}]

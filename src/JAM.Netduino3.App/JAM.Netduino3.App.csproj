@@ -48,6 +48,7 @@
     <Compile Include="Helpers\Toolbox\SimpleSocket.cs" />
     <Compile Include="Helpers\Toolbox\StringHelpers.cs" />
     <Compile Include="Helpers\Toolbox\Tools.cs" />
+    <Compile Include="Helpers\WebServerHelper.cs" />
     <Compile Include="NetHelper.cs" />
     <Compile Include="SdHelper.cs" />
     <Compile Include="System.Diagnostics.Fix.cs" />
@@ -58,7 +59,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="WebServerHelper.cs" />
+    <Compile Include="Helpers\WebServer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Graphics" />
@@ -84,18 +85,16 @@
     <Content Include="Resources\Scripts\knockout.js" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\3rd\MicroWebServer\MicroWebServer\MicroWebServer.csproj">
-      <Project>{50AA3C37-4192-4D97-84D5-3420AF85E5BC}</Project>
-      <Name>MicroWebServer</Name>
+    <ProjectReference Include="..\..\..\JAM.Micro\3rd\EmbeddedWebserver.Core\EmbeddedWebserver.Core.csproj">
+      <Project>{F97AB7CF-5867-4351-BAB6-6E42D6D5F5A6}</Project>
+      <Name>EmbeddedWebserver.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\JAM.Netduino3.dto\JAM.Netduino3.dto.csproj">
       <Project>{B43286D5-7A1F-4E33-8243-D59D5B96FD26}</Project>
       <Name>JAM.Netduino3.dto</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Condition="EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <Import Condition="!EXISTS('$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets')" Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
