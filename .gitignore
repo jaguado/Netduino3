@@ -6,3 +6,6 @@
 /src/JAM.Netduino3.App/bin
 /src/JAM.Netduino3.Web/obj
 /src/JAM.Netduino3.Web/bin
+/src/JAM.Netduino3.dto/obj
+/src/JAM.Netduino3.dto/bin
+/src/.vs/JAM.Netduino3/v14/.suo
