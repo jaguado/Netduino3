@@ -6,10 +6,12 @@
 ## POCS
 
 **Netduino 3 Wifi  + Heroku App**
-> Still on development
-
-
+> Still on development  
   
+**Heroku App (dotnetcore 1.1 + GrowControl API + Swagger)**
+> https://growcontrol.herokuapp.com  
+> https://growcontrol.herokuapp.com/swagger/ui
+    
     
 ## Third Party Libraries
 
