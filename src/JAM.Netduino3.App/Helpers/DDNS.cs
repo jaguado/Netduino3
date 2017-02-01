@@ -3,7 +3,7 @@ using System.IO;
 using System.Net;
 using Toolbox.NETMF.NET;
 
-namespace JAM.Netduino3.Helpers
+namespace JAM.Netduino3.App.Helpers
 {
     public class DDNS
     {

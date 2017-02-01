@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace JAM.Netduino3.Helpers
+namespace JAM.Netduino3.App.Helpers
 {
     public class Config : Toolbox.StringDictionary
     {

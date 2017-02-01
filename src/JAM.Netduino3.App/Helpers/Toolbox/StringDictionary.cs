@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace JAM.Netduino3.Helpers.Toolbox
+namespace JAM.Netduino3.App.Helpers.Toolbox
 {
     public class StringDictionary : IEnumerable
     {

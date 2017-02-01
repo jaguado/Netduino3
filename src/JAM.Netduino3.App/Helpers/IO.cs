@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.SPOT.IO;
 
-namespace JAM.Netduino3.Helpers
+namespace JAM.Netduino3.App.Helpers
 {
     public class IO
     {

@@ -1,4 +1,4 @@
-namespace JAM.Netduino3.Helpers
+namespace JAM.Netduino3.App.Helpers
 {
    public static class StringHelper
     {

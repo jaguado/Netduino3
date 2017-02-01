@@ -2,11 +2,13 @@ using System.Threading;
 using System;
 using Microsoft.SPOT;
 using System.Net;
+using JAM.Netduino3.App.Helpers;
 
 namespace JAM.Netduino3.App
 {
     public class Program
     {
+        private const string ApiServer = "iot.jamtech.cl:5000";
         public static void Main()
         {
             try
@@ -14,7 +16,7 @@ namespace JAM.Netduino3.App
                 Debug.EnableGCMessages(true);
 
                 //Load configuration
-                var config = new Helpers.Config();
+                var config = new Config();
                 Debug.Print(config.Count + " parametros cargados");
 
                 //Wifi
@@ -23,15 +25,19 @@ namespace JAM.Netduino3.App
                 NetHelper.WaitForWifi();
                 
                 //Update date and time
-                var timeUpdated = Helpers.Ntp.UpdateTimeFromNtpServer(config[ConfigConstants.NtpServer], int.Parse(config[ConfigConstants.TimeZone]));
+                var timeUpdated = Ntp.UpdateTimeFromNtpServer(config[ConfigConstants.NtpServer], int.Parse(config[ConfigConstants.TimeZone]));
                 Debug.Print("Fecha y hora: " + DateTime.Now);
 
                 //Update DDNS
-                Helpers.DDNS.ActualizarDNS(config[ConfigConstants.DdnsUpdateUrl]);
-                Debug.Print("DDNS actualizado");
+                //Helpers.DDNS.ActualizarDNS(config[ConfigConstants.DdnsUpdateUrl]);
+                //Debug.Print("DDNS actualizado");
+
+                //Register on server
+                var res = Helpers.Iot.Register(NI.IPAddress, NI.PhysicalAddress, ApiServer);
+                
 
                 //WebServer
-                var web = new Helpers.WebServerHelper(int.Parse(config[ConfigConstants.WebServerPort]));
+                var web = new Web(int.Parse(config[ConfigConstants.WebServerPort]));
                 Debug.Print("WebServer iniciado en http://" + web.Ip + ":" + web.Port);
 
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());

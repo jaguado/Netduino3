@@ -2,9 +2,9 @@ using EmbeddedWebserver.Core.Configuration;
 using EmbeddedWebserver.Core.Handlers.Interfaces;
 using System;
 
-namespace JAM.Netduino3.Helpers
+namespace JAM.Netduino3.App.Helpers
 {
-    public class WebServer:IDisposable
+    internal class WebServer:IDisposable
     {
         EmbeddedWebserver.Core.Webserver server;
         public WebServer()

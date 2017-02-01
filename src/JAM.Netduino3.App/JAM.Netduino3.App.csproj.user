@@ -6,7 +6,7 @@
     <MF_GenerateStubs>False</MF_GenerateStubs>
   </PropertyGroup>
   <PropertyGroup>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <DeployTransport>USB</DeployTransport>
