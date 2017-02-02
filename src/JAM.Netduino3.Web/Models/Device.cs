@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace JAM.Netduino3.Web.Models
 {
@@ -27,5 +28,7 @@ namespace JAM.Netduino3.Web.Models
         public List<Messages> Queue { set; get; }
         
         internal bool Deleted { set; get; }
+
+        internal DateTime RegistrationDate { set; get; }
     }
 }

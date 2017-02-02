@@ -50,6 +50,8 @@ namespace JAM.Netduino3.Web.Controllers
         public Models.Device RegisterDevice([FromBody] Models.Device device)
         {
             var tempDevice = device;
+            tempDevice.RegistrationDate = DateTime.Now;
+
             //Asign IP
             if (string.IsNullOrEmpty(tempDevice.IP))
                 tempDevice.IP = HttpContext.Connection.RemoteIpAddress.ToString();
@@ -63,8 +65,17 @@ namespace JAM.Netduino3.Web.Controllers
             }
 
             //Create Thread listening on the port
-            tempDevice.gateway = new Helpers.GatewayHelper(tempDevice.Port);
-            Devices.Add(tempDevice);
+            //tempDevice.gateway = new Helpers.GatewayHelper(tempDevice.Port);
+
+            var existingDevice = Devices.SingleOrDefault(s => s.MAC == device.MAC);
+            if(existingDevice != null && existingDevice.MAC != "")
+            {
+                existingDevice.IP = device.IP;
+                existingDevice.RegistrationDate = DateTime.Now;
+            }
+            else
+                Devices.Add(tempDevice);
+
             Ok();
             return tempDevice;
         }
