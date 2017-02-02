@@ -7,7 +7,7 @@ namespace JAM.Netduino3.App.Helpers
     {
         public static string Register(string ip, byte[] mac, string ApiServer)
         {
-            return NetHelper.HttpPost("http://" + ApiServer + "/api/Devices", "{\"mac\": \"" + mac.ToFormattedString() + "\",  \"ip\": \"" + ip + "\"}");
+            return NetHelper.HttpPost(ApiServer + "/api/Devices", "{\"mac\": \"" + mac.ToFormattedString() + "\",  \"ip\": \"" + ip + "\"}");
         }
 
         public static string GetQuehue(string mac, string ApiServer)

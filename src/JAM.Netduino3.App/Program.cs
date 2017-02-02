@@ -9,11 +9,15 @@ namespace JAM.Netduino3.App
 {
     public class Program
     {
-        private const string ApiServer = "iot.jamtech.cl:5000";
+        private static string ApiServer = "https://growcontrol.herokuapp.com";
         public static void Main()
         {
             try
             {
+#if DEBUG
+                ApiServer = "http://iot.jamtech.cl:5000";
+#endif
+
                 Debug.EnableGCMessages(true);
 
                 //Load configuration
