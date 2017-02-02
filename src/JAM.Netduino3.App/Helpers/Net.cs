@@ -74,13 +74,7 @@ namespace JAM.Netduino3.App.Helpers
                 }
 
                 var response = (HttpWebResponse)wr.GetResponse();
-                var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-
-                using (var res = wr.GetResponse())
-                {
-                    var sr = new StreamReader(res.GetResponseStream());
-                    return sr.ReadToEnd().Trim();
-                }
+                return new StreamReader(response.GetResponseStream()).ReadToEnd();
             }
         }
 

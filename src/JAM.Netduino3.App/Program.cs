@@ -3,6 +3,7 @@ using System;
 using Microsoft.SPOT;
 using System.Net;
 using JAM.Netduino3.App.Helpers;
+using Microsoft.SPOT.Net.NetworkInformation;
 
 namespace JAM.Netduino3.App
 {
@@ -21,7 +22,7 @@ namespace JAM.Netduino3.App
 
                 //Wifi
                 Debug.Print("Esperando Wifi");
-                Microsoft.SPOT.Net.NetworkInformation.NetworkInterface NI = Microsoft.SPOT.Net.NetworkInformation.NetworkInterface.GetAllNetworkInterfaces()[0];
+                var NI = NetworkInterface.GetAllNetworkInterfaces()[0];
                 NetHelper.WaitForWifi();
                 
                 //Update date and time
@@ -31,14 +32,13 @@ namespace JAM.Netduino3.App
                 //Update DDNS
                 //Helpers.DDNS.ActualizarDNS(config[ConfigConstants.DdnsUpdateUrl]);
                 //Debug.Print("DDNS actualizado");
-
-                //Register on server
-                var res = Helpers.Iot.Register(NI.IPAddress, NI.PhysicalAddress, ApiServer);
-                
-
+                                
                 //WebServer
                 var web = new Web(int.Parse(config[ConfigConstants.WebServerPort]));
                 Debug.Print("WebServer iniciado en http://" + web.Ip + ":" + web.Port);
+
+                //IoT Registration
+                Register(NI);
 
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());
                 Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());
@@ -50,6 +50,19 @@ namespace JAM.Netduino3.App
 
             Debug.Print("Going to sleep");
             Thread.Sleep(Timeout.Infinite);
+        }
+
+        private static void Register(NetworkInterface NI)
+        {
+            try
+            {
+                var res = Iot.Register(NI.IPAddress, NI.PhysicalAddress, ApiServer);
+                Debug.Print("Registered: " + res);
+            }
+            catch (Exception ex)
+            {
+                Debug.Print("Error registering: " + ex.ToString() + Enviroment.NewLine + ex.StackTrace);
+            }
         }
     }
 }
