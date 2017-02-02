@@ -106,6 +106,7 @@ namespace JAM.Netduino3.Web.Controllers
                 tmpDevice.Queue.AddRange(device.Queue.Where(q => q.New));
 
                 //Update old ones
+                tmpDevice.IP = device.IP;
                 foreach(var msg in device.Queue.Where(m=>!m.New))
                 {
                     var m = tmpDevice.Queue.Single(q => q.UniqueId == msg.UniqueId);
