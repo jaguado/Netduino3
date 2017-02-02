@@ -4,6 +4,8 @@ using Microsoft.SPOT;
 using System.Net;
 using JAM.Netduino3.App.Helpers;
 using Microsoft.SPOT.Net.NetworkInformation;
+using SecretLabs.NETMF.Hardware.Netduino;
+using Microsoft.SPOT.Hardware;
 
 namespace JAM.Netduino3.App
 {
@@ -14,9 +16,9 @@ namespace JAM.Netduino3.App
         {
             try
             {
-#if DEBUG
-                ApiServer = "http://iot.jamtech.cl:5000";
-#endif
+                #if DEBUG
+                    //ApiServer = "http://iot.jamtech.cl:5000";
+                #endif
 
                 Debug.EnableGCMessages(true);
 
@@ -46,10 +48,12 @@ namespace JAM.Netduino3.App
 
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());
                 Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());
+                Blink(false);
             }
             catch(Exception ex)
             {
-                Debug.Print("WebServer error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
+                Debug.Print("Init error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
+                Blink(true);
             }
 
             Debug.Print("Going to sleep");
@@ -66,6 +70,33 @@ namespace JAM.Netduino3.App
             catch (Exception ex)
             {
                 Debug.Print("Error registering: " + ex.ToString() + Enviroment.NewLine + ex.StackTrace);
+            }
+        }
+        private static void Blink(bool error)
+        {
+            int waitTime = 300;
+            var onboardLED = new OutputPort(Pins.ONBOARD_LED, true);
+            Thread.Sleep(waitTime);
+            if (!error)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    onboardLED.Write(false);
+                    Thread.Sleep(waitTime);
+                    onboardLED.Write(true);
+                    Thread.Sleep(waitTime);
+                }
+                onboardLED.Write(false);
+            }
+            else
+            {
+                for(int i = 0; i < 10; i++)
+                {
+                    onboardLED.Write(false);
+                    Thread.Sleep(waitTime);
+                    onboardLED.Write(true);
+                    Thread.Sleep(waitTime);
+                }
             }
         }
     }
