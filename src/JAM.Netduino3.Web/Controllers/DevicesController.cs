@@ -72,6 +72,7 @@ namespace JAM.Netduino3.Web.Controllers
             {
                 existingDevice.IP = device.IP;
                 existingDevice.RegistrationDate = DateTime.Now;
+                existingDevice.Deleted = false;
             }
             else
                 Devices.Add(tempDevice);
