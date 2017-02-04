@@ -30,7 +30,8 @@ namespace JAM.Netduino3.App
                 Debug.Print("Esperando Wifi");
                 var NI = NetworkInterface.GetAllNetworkInterfaces()[0];
                 NetHelper.WaitForWifi();
-                
+                Debug.Print("Wifi Ok. Ip: " + NI.IPAddress);
+
                 //Update date and time
                 var timeUpdated = Ntp.UpdateTimeFromNtpServer(config[ConfigConstants.NtpServer], int.Parse(config[ConfigConstants.TimeZone]));
                 Debug.Print("Fecha y hora: " + DateTime.Now);
@@ -38,21 +39,34 @@ namespace JAM.Netduino3.App
                 //Update DDNS
                 //Helpers.DDNS.ActualizarDNS(config[ConfigConstants.DdnsUpdateUrl]);
                 //Debug.Print("DDNS actualizado");
-                                
+
+                //Growcontrol init
+                var growControl = new GrowControl();
+                growControl.RunOnSeparateThread();
+                
                 //WebServer
-                var web = new Web(int.Parse(config[ConfigConstants.WebServerPort]));
+                var web = new Web(int.Parse(config[ConfigConstants.WebServerPort]), false);
                 Debug.Print("WebServer iniciado en http://" + web.Ip + ":" + web.Port);
+
+                //Relays control handler
+                web.RegisterHandler("relayChange", new Handlers.RelaysChangeHandler(ref growControl));
+                web.RegisterHandler("relayRead", new Handlers.RelaysReadHandler(ref growControl));
+                web.Start();
 
                 //IoT Registration
                 Register(NI);
-
+                
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());
                 Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());
                 Blink(false);
             }
             catch(Exception ex)
             {
-                Debug.Print("Init error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
+                var httpEx = ex as EmbeddedWebserver.Core.HttpException;
+                if (httpEx!=null)
+                    Debug.Print("Web server error: " + httpEx.ErrorCode.ToString());
+                else
+                    Debug.Print("Init error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
                 Blink(true);
             }
 
