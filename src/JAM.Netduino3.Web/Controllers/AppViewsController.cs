@@ -19,7 +19,7 @@ namespace Inspinia_MVC5.Controllers
         public ActionResult Management()
         {
 #if DEBUG
-            DummyData();
+            //DummyData();
 #endif
 
             ViewBag.Devices = DevicesController.Devices;
