@@ -13,7 +13,12 @@ namespace JAM.Netduino3.Web.Controllers
     [Route("api/[controller]")]
     public class DevicesController : Controller
     {
-        private static ConcurrentBag<Models.Device> Devices = new ConcurrentBag<Models.Device>();
+        /// <summary>
+        /// 
+        /// </summary>
+        public static ConcurrentBag<Models.Device> Devices = new ConcurrentBag<Models.Device>();
+
+
         // GET: api/devices
         /// <summary>
         /// List all registered devices

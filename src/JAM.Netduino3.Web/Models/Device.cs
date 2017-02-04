@@ -8,6 +8,11 @@ namespace JAM.Netduino3.Web.Models
     /// </summary>
     public class Device
     {
+        public Device()
+        {
+            LastUpdate = DateTime.Now;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -20,6 +25,30 @@ namespace JAM.Netduino3.Web.Models
         /// 
         /// </summary>
         public int Port { set; get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public DateTime LastUpdate { set; get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int RelaysCount { set; get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int RelaysInUse { set; get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public int PoweredOnPercentage()
+        {
+            return (100 / RelaysCount) * RelaysInUse;
+        }
+
 
         internal Helpers.GatewayHelper gateway { set; get; }
         /// <summary>

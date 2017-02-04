@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JAM.Netduino3.Web.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Inspinia_MVC5.Controllers
 {
@@ -17,9 +18,28 @@ namespace Inspinia_MVC5.Controllers
         
         public ActionResult Management()
         {
+#if DEBUG
+            DummyData();
+#endif
+
+            ViewBag.Devices = DevicesController.Devices;
             return View();
         }
-       
+
+
+        private static void DummyData()
+        {
+            //Dummy Devices
+            DevicesController.Devices.Add(new JAM.Netduino3.Web.Models.Device
+            {
+                IP = "192.168.0.13",
+                MAC = "00:00:00:00:00",
+                RelaysCount=8,
+                RelaysInUse=2
+            });
+
+        }
+
         public ActionResult ProjectDetail()
         {
             return View();
