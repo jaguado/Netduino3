@@ -2,7 +2,7 @@
     <div class="sidebar-collapse">
         <ul class="nav" id="side-menu">
             <li class="nav-header">
-                <div class="dropdown profile-element">
+                <div class="dropdown profile-element" style="display:none;">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear">
                             <span class="block m-t-xs">
@@ -19,10 +19,10 @@
                 </div>
             </li>
             <li class="@Html.IsSelected(action: "Index")">
-                <a href="@Url.Action("Index", "Home")"><i class="fa fa-laptop"></i> <span class="nav-label">Main page</span> </a>
+                <a href="@Url.Action("Index", "Home")"><i class="fa fa-dashboard"></i> <span class="nav-label">Overview</span> </a>
             </li>
-            <li class="@Html.IsSelected(action: "Minor")">
-                <a href="@Url.Action("Minor", "Home")"><i class="fa fa-desktop"></i> <span class="nav-label">Minor page</span></a>
+            <li class="@Html.IsSelected(action: "Management")">
+                <a href="@Url.Action("Management", "AppViews")"><i class="fa fa-desktop"></i> <span class="nav-label">Devices</span></a>
             </li>
         </ul>
     </div>

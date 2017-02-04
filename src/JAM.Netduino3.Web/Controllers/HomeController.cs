@@ -28,11 +28,11 @@ namespace JAM.Netduino3.Web.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        public IActionResult Minor()
+        public IActionResult Manage()
         {
 
-            ViewData["SubTitle"] = "Simple example of second view";
-            ViewData["Message"] = "Data are passing to view by ViewData from controller";
+            ViewData["SubTitle"] = "Available Devices";
+            ViewData["Message"] = "List of all the devices registered and with activity since 10 minutes at this time";
 
             return View();
         }
