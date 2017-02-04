@@ -38,28 +38,33 @@ namespace JAM.Netduino3.App
                 //Update DDNS
                 //Helpers.DDNS.ActualizarDNS(config[ConfigConstants.DdnsUpdateUrl]);
                 //Debug.Print("DDNS actualizado");
-                                
-                //WebServer
-                var web = new Web(int.Parse(config[ConfigConstants.WebServerPort]));
-                Debug.Print("WebServer iniciado en http://" + web.Ip + ":" + web.Port);
-
-                //IoT Registration
-                Register(NI);
-
 
                 //Growcontrol init
                 var growControl = new GrowControl();
                 growControl.RunOnSeparateThread();
+                
+                //WebServer
+                var web = new Web(int.Parse(config[ConfigConstants.WebServerPort]), false);
+                Debug.Print("WebServer iniciado en http://" + web.Ip + ":" + web.Port);
+
+                //Relays control handler
                 web.RegisterHandler("relay", new Handlers.RelaysHandler(ref growControl));
+                web.Start();
 
-
+                //IoT Registration
+                Register(NI);
+                
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());
                 Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());
                 Blink(false);
             }
             catch(Exception ex)
             {
-                Debug.Print("Init error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
+                var httpEx = ex as EmbeddedWebserver.Core.HttpException;
+                if (httpEx!=null)
+                    Debug.Print("Web server error: " + httpEx.ErrorCode.ToString());
+                else
+                    Debug.Print("Init error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
                 Blink(true);
             }
 

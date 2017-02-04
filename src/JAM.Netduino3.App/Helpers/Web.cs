@@ -8,11 +8,12 @@ namespace JAM.Netduino3.App.Helpers
         public int Port { set; get; }
         public string Ip { set; get; }
         private WebServer _web { set; get; }
-        public Web(int port){
+        public Web(int port, bool autoStart=true){
             Port = port;
 
             _web = new WebServer();
-            _web.StartListening();
+            if(autoStart)
+                _web.StartListening();
            
             //Get Ip
             var nis = NetworkInterface.GetAllNetworkInterfaces();
@@ -20,6 +21,12 @@ namespace JAM.Netduino3.App.Helpers
             {
                 Ip = nis[0].IPAddress;
             }
+        }
+
+        public void Start()
+        {
+            if (_web != null)
+                _web.StartListening();
         }
 
         public void RegisterHandler(string pAccessUri, IHandler pHandlerInstance)
