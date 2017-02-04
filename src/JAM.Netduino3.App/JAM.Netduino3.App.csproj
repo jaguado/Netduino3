@@ -37,7 +37,8 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Enviroment.cs" />
-    <Compile Include="Handlers\RelaysHandler.cs" />
+    <Compile Include="Handlers\RelaysReadHandler.cs" />
+    <Compile Include="Handlers\RelaysChangeHandler.cs" />
     <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\DDNS.cs" />
     <Compile Include="Helpers\GrowControl.cs" />

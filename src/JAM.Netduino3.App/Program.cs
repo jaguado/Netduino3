@@ -30,7 +30,8 @@ namespace JAM.Netduino3.App
                 Debug.Print("Esperando Wifi");
                 var NI = NetworkInterface.GetAllNetworkInterfaces()[0];
                 NetHelper.WaitForWifi();
-                
+                Debug.Print("Wifi Ok. Ip: " + NI.IPAddress);
+
                 //Update date and time
                 var timeUpdated = Ntp.UpdateTimeFromNtpServer(config[ConfigConstants.NtpServer], int.Parse(config[ConfigConstants.TimeZone]));
                 Debug.Print("Fecha y hora: " + DateTime.Now);
@@ -48,7 +49,8 @@ namespace JAM.Netduino3.App
                 Debug.Print("WebServer iniciado en http://" + web.Ip + ":" + web.Port);
 
                 //Relays control handler
-                web.RegisterHandler("relay", new Handlers.RelaysHandler(ref growControl));
+                web.RegisterHandler("relayChange", new Handlers.RelaysChangeHandler(ref growControl));
+                web.RegisterHandler("relayRead", new Handlers.RelaysReadHandler(ref growControl));
                 web.Start();
 
                 //IoT Registration

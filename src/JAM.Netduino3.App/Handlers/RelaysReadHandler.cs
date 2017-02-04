@@ -5,7 +5,7 @@ using Microsoft.SPOT.Hardware;
 
 namespace JAM.Netduino3.App.Handlers
 {
-    public class RelaysHandler : HandlerBase
+    public class RelaysReadHandler : HandlerBase
     {
         #region Non-public members
 
@@ -14,14 +14,12 @@ namespace JAM.Netduino3.App.Handlers
         {
             if (_growControl == null) return;
 
-            var dict = pContext.Request.GetPostRequestParameters();
-            if (dict.ContainsKey("index"))
+            var dict = pContext.Request.QueryString;
+            if (dict.ContainsKey("relay"))
             {
-                var index = int.Parse(dict["index"].Trim());
-                if (dict.ContainsKey("value"))
-                {
-                    _growControl.ChangeRelayState(index, dict["value"].Trim().ToLower().Equals("true"));
-                }
+                var index = int.Parse(dict["relay"].Trim());
+                var state = _growControl.GetRelayState(index);
+                pContext.Response.ResponseBody = (!state).ToString();
             }
 
             //TODO Add Response body!!
@@ -31,7 +29,7 @@ namespace JAM.Netduino3.App.Handlers
 
         #region Constructors
 
-        public RelaysHandler(ref GrowControl growControl) : base(HttpMethods.POST)
+        public RelaysReadHandler(ref GrowControl growControl) : base(HttpMethods.GET)
         {
             _growControl = growControl;
         }

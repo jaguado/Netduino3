@@ -112,6 +112,44 @@ namespace JAM.Netduino3.App.Helpers
             Debug.Print("Relay n° " + index + " Value set to:" + state);
         }
 
+        public bool GetRelayState(int index)
+        {
+            OutputPort obj = null;
+            switch (index)
+            {
+                case 1:
+                    obj = _relay1;
+                    break;
+                case 2:
+                    obj = _relay2;
+                    break;
+                case 3:
+                    obj = _relay3;
+                    break;
+                case 4:
+                    obj = _relay4;
+                    break;
+                case 5:
+                    obj = _relay5;
+                    break;
+                case 6:
+                    obj = _relay6;
+                    break;
+                case 7:
+                    obj = _relay7;
+                    break;
+                case 8:
+                    obj = _relay8;
+                    break;
+            }
+            bool state = false;
+            if (obj != null)
+                state = obj.Read();
+
+            Debug.Print("Relay n° " + index + " Value is" + state);
+            return state;
+        }
+
         internal void StartRelayControl()
         {
             _config = GetConfig();
