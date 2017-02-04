@@ -1,5 +1,6 @@
 ﻿using JAM.Netduino3.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Inspinia_MVC5.Controllers
 {
@@ -18,9 +19,8 @@ namespace Inspinia_MVC5.Controllers
         
         public ActionResult Management()
         {
-#if DEBUG
-            //DummyData();
-#endif
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+                DummyData();
 
             ViewBag.Devices = DevicesController.Devices;
             return View();

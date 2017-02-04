@@ -53,7 +53,7 @@ namespace JAM.Netduino3.App
                 web.RegisterHandler("relayRead", new Handlers.RelaysReadHandler(ref growControl));
                 web.Start();
 
-                //IoT Registration
+                //IoT Registration  
                 Register(NI);
                 
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());

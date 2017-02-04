@@ -4,6 +4,8 @@ using System.Collections.Concurrent;
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
+using JAM.Netduino3.Web.Models;
 
 namespace JAM.Netduino3.Web.Controllers
 {
@@ -27,6 +29,11 @@ namespace JAM.Netduino3.Web.Controllers
         [HttpGet]
         public IEnumerable<Models.Device> ListRegistered()
         {
+            if (!string.IsNullOrEmpty(Request.Query["force"]))
+            {
+                //Force devices refresh
+                RefreshDevicesInfo(Request.Query["mac"]);
+            }
             return Devices.Where(d=>!d.Deleted);
         }
 
@@ -78,6 +85,7 @@ namespace JAM.Netduino3.Web.Controllers
                 existingDevice.IP = device.IP;
                 existingDevice.RegistrationDate = DateTime.Now;
                 existingDevice.Deleted = false;
+                existingDevice.LastUpdate = DateTime.Now;
             }
             else
                 Devices.Add(tempDevice);
@@ -121,6 +129,38 @@ namespace JAM.Netduino3.Web.Controllers
                 }
             }
             Ok();
+        }
+
+        private static void RefreshDevicesInfo(string mac="")
+        {
+            if (mac == string.Empty)
+            {
+                //Refresh all
+                Parallel.ForEach(Devices, device =>
+                {
+                    RefreshDeviceInfo(device);
+                });
+            }
+            else
+            {
+                var device = Devices.FirstOrDefault(d => d.MAC == mac);
+                if (device != null && device.MAC == mac)
+                {
+                    RefreshDeviceInfo(device);
+                }
+            }
+        }
+
+        private static void RefreshDeviceInfo(Device device)
+        {
+            //Add action to device quehue
+            device.Queue.Add(new Messages
+            {
+                Active = true,
+                New = true,
+                UniqueId = 0, //TODO Add uniqueId to messages
+                Content = "refresh"
+            });
         }
     }
 }       
