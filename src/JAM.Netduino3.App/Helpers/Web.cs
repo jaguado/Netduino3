@@ -11,13 +11,18 @@ namespace JAM.Netduino3.App.Helpers
 
             var ws = new WebServer();
             ws.StartListening();
-            
+           
             //Get Ip
             var nis = NetworkInterface.GetAllNetworkInterfaces();
             if (nis != null && nis.Length>0)
             {
                 Ip = nis[0].IPAddress;
             }
+        }
+
+        public int getRequestErrors()
+        {
+            throw new System.Exception("Not implemented");
         }
     }
 }

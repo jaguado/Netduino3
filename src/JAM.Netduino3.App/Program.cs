@@ -46,6 +46,12 @@ namespace JAM.Netduino3.App
                 //IoT Registration
                 Register(NI);
 
+
+                //Growcontrol init
+                var growControl = new GrowControl();
+                growControl.RunOnSeparateThread();
+                
+
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());
                 Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());
                 Blink(false);
