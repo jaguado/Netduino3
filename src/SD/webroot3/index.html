@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Netduino Admin</title>
+    <script type="text/javascript">
+        function load() {
+            var chk1 = document.getElementById('chkRelay1');
+            if (getRelayState(1) == "True")
+                chk1.checked = true;
+            else
+                chk1.checked = false;
+
+            var chk2 = document.getElementById('chkRelay2');
+            if (getRelayState(2) == "True")
+                chk2.checked = true;
+            else
+                chk2.checked = false;
+
+            var chk3 = document.getElementById('chkRelay3');
+            if (getRelayState(3) == "True")
+                chk3.checked = true;
+            else
+                chk3.checked = false;
+
+            var chk4 = document.getElementById('chkRelay4');
+            if (getRelayState(4) == "True")
+                    chk4.checked = true;
+                else
+                    chk4.checked = false;
+        }
+        function changeRelayState(val, state) {
+            var url = "/relay" + val + "?value=";
+            if (state)
+                url = url + "true";
+            else
+                url = url + "false";
+
+
+            var res= httpGet(url);
+
+            var chk = document.getElementById('chkRelay' + val);
+            if (res == "True")
+                chk.checked = true;
+            else
+                chk.checked = false;
+        }
+        function getRelayState(val) {
+            var url = "/relay" + val;
+            return httpGet(url);            
+        }
+        function httpGet(theUrl) {
+            var xmlHttp = null;
+
+            xmlHttp = new XMLHttpRequest({ mozSystem: true });
+            xmlHttp.open("GET", theUrl, false);
+            xmlHttp.send(null);
+            return xmlHttp.responseText;
+        }
+    </script>
+</head>
+    <body onload="load();">
+        <div>
+            Relay ON
+            <div>
+                <input type="button" onclick="changeRelayState(1,true);" name="relay1" value="Relay 1" />
+                <input type="button" onclick="changeRelayState(2,true);" name="relay2" value="Relay 2" />
+                <input type="button" onclick="changeRelayState(3,true);" name="relay3" value="Relay 3" />
+                <input type="button" onclick="changeRelayState(4,true);" name="relay4" value="Relay 4" />
+            </div>
+        </div>
+        <div>
+            Relay OFF
+            <div>
+                <input type="button" onclick="changeRelayState(1,false);" name="relay1" value="Relay 1" />
+                <input type="button" onclick="changeRelayState(2,false);" name="relay2" value="Relay 2" />
+                <input type="button" onclick="changeRelayState(3,false);" name="relay3" value="Relay 3" />
+                <input type="button" onclick="changeRelayState(4,false);" name="relay4" value="Relay 4" />
+            </div>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <td>Relay 1</td>
+                    <td>Relay 2</td>
+                    <td>Relay 3</td>
+                    <td>Relay 4</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox" id="chkRelay1"/></td>
+                    <td><input type="checkbox" id="chkRelay2"/></td>
+                    <td><input type="checkbox" id="chkRelay3"/></td>
+                    <td><input type="checkbox" id="chkRelay4"/></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
