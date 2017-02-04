@@ -150,6 +150,11 @@ namespace JAM.Netduino3.App.Helpers
             return state;
         }
 
+        public int RelaysCount()
+        {
+            return 8;
+        }
+
         internal void StartRelayControl()
         {
             _config = GetConfig();

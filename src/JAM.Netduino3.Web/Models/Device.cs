@@ -44,9 +44,13 @@ namespace JAM.Netduino3.Web.Models
         /// <summary>
         /// 
         /// </summary>
-        public int PoweredOnPercentage()
+        public int PoweredOnPercentage
         {
-            return (100 / RelaysCount) * RelaysInUse;
+            get
+            {
+                if (RelaysCount == 0) return 0;
+                return (100 / RelaysCount) * RelaysInUse;
+            }
         }
 
 
