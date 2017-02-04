@@ -50,7 +50,8 @@ namespace JAM.Netduino3.App
                 //Growcontrol init
                 var growControl = new GrowControl();
                 growControl.RunOnSeparateThread();
-                
+                web.RegisterHandler("relay", new Handlers.RelaysHandler(ref growControl));
+
 
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());
                 Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());

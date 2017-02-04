@@ -37,10 +37,9 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="Enviroment.cs" />
-    <Compile Include="GrowControlOffline.cs" />
     <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\DDNS.cs" />
-    <Compile Include="Helpers\GrowControlOffline.cs" />
+    <Compile Include="Helpers\GrowControl.cs" />
     <Compile Include="Helpers\IO.cs" />
     <Compile Include="Helpers\Iot.cs" />
     <Compile Include="Helpers\Net.cs" />

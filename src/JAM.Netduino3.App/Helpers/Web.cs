@@ -1,3 +1,4 @@
+using EmbeddedWebserver.Core.Handlers.Interfaces;
 using Microsoft.SPOT.Net.NetworkInformation;
 
 namespace JAM.Netduino3.App.Helpers
@@ -6,17 +7,26 @@ namespace JAM.Netduino3.App.Helpers
     {
         public int Port { set; get; }
         public string Ip { set; get; }
+        private WebServer _web { set; get; }
         public Web(int port){
             Port = port;
 
-            var ws = new WebServer();
-            ws.StartListening();
+            _web = new WebServer();
+            _web.StartListening();
            
             //Get Ip
             var nis = NetworkInterface.GetAllNetworkInterfaces();
             if (nis != null && nis.Length>0)
             {
                 Ip = nis[0].IPAddress;
+            }
+        }
+
+        public void RegisterHandler(string pAccessUri, IHandler pHandlerInstance)
+        {
+            if (_web != null)
+            {
+                _web.RegisterThreadSafeHandler(pAccessUri, pHandlerInstance);
             }
         }
 
