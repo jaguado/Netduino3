@@ -289,3 +289,30 @@ function WinMove() {
 }
 
 
+function changeState(index, state, IP) {
+    if (state)
+        alert('Turn On Relay ' + index);
+    else
+        alert('Turn Off Relay ' + index);
+   
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://" + IP + "/relayChange",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/x-www-form-urlencoded"
+        },
+        "data": {
+            "relay": index,
+            "value": state ? "true" : "false"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        alert('changeState done. Response: ' + response);
+        console.log(response);
+        
+    });
+    //
+};
