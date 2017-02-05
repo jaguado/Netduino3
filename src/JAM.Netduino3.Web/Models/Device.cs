@@ -45,7 +45,7 @@ namespace JAM.Netduino3.Web.Models
         {
             get
             {
-                return RelaysState.Length;
+                return RelaysState.Length-1;
             }
         }
 

@@ -38,7 +38,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Enviroment.cs" />
     <Compile Include="Handlers\RegisterHandler.cs" />
-    <Compile Include="Handlers\RelaysReadHandler.cs" />
+    <Compile Include="Helpers\Toolbox\RelaysReadHandler.cs" />
     <Compile Include="Handlers\RelaysChangeHandler.cs" />
     <Compile Include="Helpers\Config.cs" />
     <Compile Include="Helpers\DDNS.cs" />

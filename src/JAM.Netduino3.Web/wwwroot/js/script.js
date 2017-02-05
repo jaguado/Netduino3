@@ -288,6 +288,19 @@ function WinMove() {
         .disableSelection();
 }
 
+function deviceRefresh(IP) {
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "http://" + IP + "/Register",
+        "method": "POST"
+    }
+
+    $.ajax(settings).done(function (response) {
+        //update data
+        alert('TODO update data');
+    });
+}
 
 function changeState(index, IP, img) {
     //get state from attribute

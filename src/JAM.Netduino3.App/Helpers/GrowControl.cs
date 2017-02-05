@@ -36,10 +36,11 @@ namespace JAM.Netduino3.App.Helpers
         private OutputPort _relay8;
 
         private GrowControlConfig _config;
-        private static int _days = 0;
+        private int _days = 0;
 
-        private static NetworkInterface _ni = null;
-        private static string _apiServer = "";
+        internal NetworkInterface _ni = null;
+        internal string _apiServer = "";
+
         public GrowControl(NetworkInterface NI, string ApiServer)
         {
             _ni = NI;
