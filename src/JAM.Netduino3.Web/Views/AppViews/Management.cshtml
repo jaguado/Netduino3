@@ -130,7 +130,7 @@
                                             <span class="label label-primary">Active</span>
                                         </td>
                                         <td class="project-title">
-                                            <a href="@Url.Action("ProjectDetail", "AppViews")">@device.IP</a>
+                                            <a href="http://@(device.IP)" target="_blank">@device.IP</a>
                                             <br />
                                             <small>Updated @device.LastUpdate.ToString()</small>
                                         </td>
@@ -143,16 +143,14 @@
                                         <td class="project-people">
                                             @foreach(var relay in @device.RelaysState)
                                             {
-                                                <a href=""><img alt="image" class="img-circle" src="~/Images/state_@(relay?1:0).png"></a>
+                                                <a href=""><img alt="Relay" class="img-circle" src="~/Images/state_@(relay?1:0).png"></a>
                                             }
                                         </td>
                                         <td class="project-actions">
                                             <a href="#" class="btn btn-white btn-sm"><i class="fa fa-refresh"></i> Refresh </a>
                                         </td>
                                     </tr>
-
                                 }
-
                             </tbody>
                         </table>
                     </div>

@@ -37,7 +37,7 @@ namespace JAM.Netduino3.App.Helpers
                 //content += ",\"campo1\":" + "\"valor1\"";
 
                 //Fin
-                content = "}";
+                content += "}";
                 NetHelper.HttpPost(ApiServer + "/api/Devices",content, "application/json", false);
                 Debug.Print("Registered");
             }

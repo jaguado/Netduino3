@@ -222,10 +222,8 @@ namespace JAM.Netduino3.App.Helpers
                         _relay8 = new OutputPort(_relayPin8, !config8.StartValue);
             }
 
-            //Register on cloud service
-            IotRegistration();
+            Debug.Print("Memory: " + Debug.GC(true));
 
-            Debug.Print("Memory: " + Debug.GC(false));
 
             //First Queue
             _queueList = new ArrayList
@@ -292,7 +290,9 @@ namespace JAM.Netduino3.App.Helpers
                 //    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
                 //})
             };
-            
+
+            //Register on cloud service
+            IotRegistration();
 
             while (!_cancel)
             {

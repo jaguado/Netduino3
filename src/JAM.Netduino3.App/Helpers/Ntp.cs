@@ -1,3 +1,4 @@
+using Microsoft.SPOT;
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -15,8 +16,9 @@ namespace JAM.Netduino3.App.Helpers
 
                 return true;
             }
-            catch
+            catch(Exception ex)
             {
+                Debug.Print("Init error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
                 return false;
             }
         }

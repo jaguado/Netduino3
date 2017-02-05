@@ -56,7 +56,6 @@ namespace JAM.Netduino3.App
 
                                 
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());
-                Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());
                 Blink(false);
             }
             catch(Exception ex)
@@ -69,15 +68,18 @@ namespace JAM.Netduino3.App
                 Blink(true);
             }
 
+            Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());
             Debug.Print("Going to sleep");
             Thread.Sleep(Timeout.Infinite);
         }
 
-       
+
+        private static OutputPort onboardLED;
         private static void Blink(bool error)
         {
             int waitTime = 300;
-            var onboardLED = new OutputPort(Pins.ONBOARD_LED, true);
+            if(onboardLED==null)
+                onboardLED = new OutputPort(Pins.ONBOARD_LED, true);
             Thread.Sleep(waitTime);
             if (!error)
             {
@@ -100,6 +102,7 @@ namespace JAM.Netduino3.App
                     Thread.Sleep(waitTime);
                 }
             }
+            Debug.Print("LED state: " + onboardLED.Read());
         }
     }
 }
