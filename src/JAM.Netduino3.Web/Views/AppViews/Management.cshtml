@@ -135,15 +135,15 @@
                                             <small>Updated @device.LastUpdate.ToString()</small>
                                         </td>
                                         <td class="project-completion">
-                                            <small>Relays powered on: @device.PoweredOnPercentage%</small>
+                                            <small>Relays powered on <b>@device.RelaysInUse</b> of <b>@device.RelaysCount</b></small>
                                             <div class="progress progress-mini">
                                                 <div style="width: @device.PoweredOnPercentage%;" class="progress-bar"></div>
                                             </div>
                                         </td>
                                         <td class="project-people">
-                                            @for (int i = 1; i <= @device.RelaysCount; i++)
+                                            @foreach(var relay in @device.RelaysState)
                                             {
-                                                <a href=""><img alt="image" class="img-circle" src="~/Images/a@(i).jpg"></a>
+                                                <a href=""><img alt="image" class="img-circle" src="~/Images/state_@(relay?1:0).png"></a>
                                             }
                                         </td>
                                         <td class="project-actions">

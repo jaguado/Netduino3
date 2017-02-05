@@ -85,8 +85,6 @@ namespace JAM.Netduino3.Web.Controllers
                 existingDevice.IP = device.IP;
                 existingDevice.RegistrationDate = DateTime.Now;
                 existingDevice.Deleted = false;
-                existingDevice.RelaysCount = device.RelaysCount;
-                existingDevice.RelaysInUse = device.RelaysInUse;
                 existingDevice.RelaysState = device.RelaysState;
                 existingDevice.LastUpdate = DateTime.Now;
             }

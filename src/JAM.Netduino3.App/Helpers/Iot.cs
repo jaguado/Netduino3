@@ -20,20 +20,26 @@ namespace JAM.Netduino3.App.Helpers
                         if (i == RelaysState.Length - 1)
                         {
                             //last one 
-                            stateJson += RelaysState[i] + "]";
+                            stateJson += (RelaysState[i] ? 1:0) + "]";
                         }
                         else
-                            stateJson += RelaysState[i] + ",";
+                            stateJson += (RelaysState[i] ? 1 : 0) + ",";
                     }
-                    content = "{\"mac\": \"" + NI.PhysicalAddress.ToFormattedString() + "\",  \"ip\": \"" + NI.IPAddress + "\"," + stateJson + "}";
+                    content = "{\"mac\": \"" + NI.PhysicalAddress.ToFormattedString() + "\",  \"ip\": \"" + NI.IPAddress + "\"," + stateJson;
                 }
                 else
                 {
-                    content = "{\"mac\": \"" + NI.PhysicalAddress.ToFormattedString() + "\",  \"ip\": \"" + NI.IPAddress + "\"}";
+                    content = "{\"mac\": \"" + NI.PhysicalAddress.ToFormattedString() + "\",  \"ip\": \"" + NI.IPAddress + "\"";
                 }
 
-                var  res = NetHelper.HttpPost(ApiServer + "/api/Devices",content);
-                Debug.Print("Registered: " + res);
+                //content += ",\"campo1\":" + "\"valor1\"";
+                //content += ",\"campo1\":" + "\"valor1\"";
+                //content += ",\"campo1\":" + "\"valor1\"";
+
+                //Fin
+                content = "}";
+                NetHelper.HttpPost(ApiServer + "/api/Devices",content, "application/json", false);
+                Debug.Print("Registered");
             }
             catch (Exception ex)
             {

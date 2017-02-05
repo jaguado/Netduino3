@@ -58,7 +58,7 @@ namespace JAM.Netduino3.App.Helpers
         }
 
 
-        public static string HttpPost(string url, string content, string contentType = "application/json")
+        public static string HttpPost(string url, string content, string contentType = "application/json", bool readResponse=true)
         {
             using (var wr = HttpWebRequest.Create(url))
             {
@@ -74,7 +74,10 @@ namespace JAM.Netduino3.App.Helpers
                 }
 
                 var response = (HttpWebResponse)wr.GetResponse();
-                return new StreamReader(response.GetResponseStream()).ReadToEnd();
+                if (readResponse)
+                    return new StreamReader(response.GetResponseStream()).ReadToEnd();
+                else
+                    return "";
             }
         }
 

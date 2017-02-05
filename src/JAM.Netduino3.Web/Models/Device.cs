@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JAM.Netduino3.Web.Models
 {
@@ -21,6 +22,12 @@ namespace JAM.Netduino3.Web.Models
         /// 
         /// </summary>
         public string IP { set; get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string PublicIP { set; get; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -34,12 +41,24 @@ namespace JAM.Netduino3.Web.Models
         /// <summary>
         /// 
         /// </summary>
-        public int RelaysCount { set; get; }
+        public int RelaysCount
+        {
+            get
+            {
+                return RelaysState.Length;
+            }
+        }
 
         /// <summary>
         /// 
         /// </summary>
-        public int RelaysInUse { set; get; }
+        public int RelaysInUse
+        {
+            get
+            {
+                return RelaysState.Count(c => c);
+            }
+        }
 
         /// <summary>
         /// 

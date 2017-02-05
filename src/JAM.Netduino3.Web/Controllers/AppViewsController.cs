@@ -36,8 +36,7 @@ namespace Inspinia_MVC5.Controllers
                 {
                     IP = "192.168.0.13",
                     MAC = "00:00:00:00:00",
-                    RelaysCount = 8,
-                    RelaysInUse = 2
+                    RelaysState=new bool[9]
                 });
             }
 

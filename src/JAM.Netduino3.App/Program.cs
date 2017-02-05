@@ -17,7 +17,7 @@ namespace JAM.Netduino3.App
             try
             {
                 #if DEBUG
-                    ApiServer = "http://iot.jamtech.cl:5000";
+                   // ApiServer = "http://iot.jamtech.cl:5000";
                 #endif
 
                 Debug.EnableGCMessages(true);
