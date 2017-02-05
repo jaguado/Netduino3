@@ -143,7 +143,7 @@
                                         <td class="project-people">
                                             @for (int i = 0; i < @device.RelaysState.Length - 1; i++)
                                             {
-                                                <img alt="Relay" class="img-circle" onclick="changeState(@(i+1),@(!device.RelaysState[i]?1:0), '@(device.IP)');" src="~/Images/state_@(device.RelaysState[i]?1:0).png">
+                                                <img alt="Relay" class="img-circle" state="@(!device.RelaysState[i]?1:0)" onclick="changeState(@(i+1),'@(device.IP)', this);" src="~/Images/state_@(device.RelaysState[i]?1:0).png">
                                             }
                                         </td>
                                         <td class="project-actions">

@@ -289,11 +289,13 @@ function WinMove() {
 }
 
 
-function changeState(index, state, IP) {
+function changeState(index, IP, img) {
+    //get state from attribute
+    var state = img.attributes['state'].value == '1';
     if (state)
-        alert('Turn On Relay ' + index);
+        console.log('Turn On Relay ' + index);
     else
-        alert('Turn Off Relay ' + index);
+        console.log('Turn Off Relay ' + index);
    
     var settings = {
         "async": true,
@@ -310,9 +312,9 @@ function changeState(index, state, IP) {
     }
 
     $.ajax(settings).done(function (response) {
-        alert('changeState done. Response: ' + response);
-        console.log(response);
-        
+        img.src = "/Images/state_" + response + ".png";
+        img.attributes['state'].value = (response == "1" ? "0" : "1");
+        console.log('changeState done. Changing relay to ' + response + ' state.');
     });
     //
 };

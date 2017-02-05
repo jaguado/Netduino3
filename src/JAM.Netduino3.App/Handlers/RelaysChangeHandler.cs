@@ -21,10 +21,13 @@ namespace JAM.Netduino3.App.Handlers
                 if (dict.ContainsKey("value"))
                 {
                     _growControl.ChangeRelayState(index, dict["value"].Trim().ToLower().Equals("true"));
+
+                    //Return new state
+                    var state = _growControl.GetRelayState(index);
+                    pContext.Response.ResponseBody = !state ? "1" : "0";
                 }
             }
-
-            //TODO Add Response body!!
+            
         }
 
         #endregion
