@@ -30,13 +30,16 @@ namespace Inspinia_MVC5.Controllers
         private static void DummyData()
         {
             //Dummy Devices
-            DevicesController.Devices.Add(new JAM.Netduino3.Web.Models.Device
+            if (DevicesController.Devices.Count == 0)
             {
-                IP = "192.168.0.13",
-                MAC = "00:00:00:00:00",
-                RelaysCount=8,
-                RelaysInUse=2
-            });
+                DevicesController.Devices.Add(new JAM.Netduino3.Web.Models.Device
+                {
+                    IP = "192.168.0.13",
+                    MAC = "00:00:00:00:00",
+                    RelaysCount = 8,
+                    RelaysInUse = 2
+                });
+            }
 
         }
 

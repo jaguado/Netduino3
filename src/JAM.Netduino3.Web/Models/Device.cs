@@ -44,6 +44,11 @@ namespace JAM.Netduino3.Web.Models
         /// <summary>
         /// 
         /// </summary>
+        public bool[] RelaysState { set; get; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         public int PoweredOnPercentage
         {
             get

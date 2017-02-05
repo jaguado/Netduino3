@@ -4,6 +4,7 @@ using System.Threading;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using SecretLabs.NETMF.Hardware.Netduino;
+using Microsoft.SPOT.Net.NetworkInformation;
 
 namespace JAM.Netduino3.App.Helpers
 {
@@ -36,8 +37,13 @@ namespace JAM.Netduino3.App.Helpers
 
         private GrowControlConfig _config;
         private static int _days = 0;
-        public GrowControl()
+
+        private static NetworkInterface _ni = null;
+        private static string _apiServer = "";
+        public GrowControl(NetworkInterface NI, string ApiServer)
         {
+            _ni = NI;
+            _apiServer = ApiServer;
             _relayPin1 = Pins.GPIO_PIN_D7;
             _relayPin2 = Pins.GPIO_PIN_D6;
             _relayPîn3 = Pins.GPIO_PIN_D5;
@@ -48,9 +54,11 @@ namespace JAM.Netduino3.App.Helpers
             _relayPin8 = Pins.GPIO_PIN_D0;
         }
 
-        public GrowControl(Cpu.Pin relay1, Cpu.Pin relay2, Cpu.Pin relay3, Cpu.Pin relay4,
+        public GrowControl(NetworkInterface NI, string ApiServer, Cpu.Pin relay1, Cpu.Pin relay2, Cpu.Pin relay3, Cpu.Pin relay4,
                            Cpu.Pin relay5, Cpu.Pin relay6, Cpu.Pin relay7, Cpu.Pin relay8)
         {
+            _ni = NI;
+            _apiServer = ApiServer;
             _relayPin1 = relay1;
             _relayPin2 = relay2;
             _relayPîn3 = relay3;
@@ -150,9 +158,22 @@ namespace JAM.Netduino3.App.Helpers
             return state;
         }
 
-        public int RelaysCount()
+        public bool[] GetRelaysState()
         {
-            return 8;
+            var res = new bool[RelaysCount+1];
+            for(int i = 1; i <= RelaysCount; i++)
+            {
+                res[i] = !GetRelayState(i);
+            }
+            return res;
+        }
+
+        public int RelaysCount
+        {
+            get
+            {
+                return 8;
+            }
         }
 
         internal void StartRelayControl()
@@ -200,6 +221,9 @@ namespace JAM.Netduino3.App.Helpers
                     if (_relay8 == null)
                         _relay8 = new OutputPort(_relayPin8, !config8.StartValue);
             }
+
+            //Register on cloud service
+            IotRegistration();
 
             Debug.Print("Memory: " + Debug.GC(false));
 
@@ -268,8 +292,9 @@ namespace JAM.Netduino3.App.Helpers
                 //    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
                 //})
             };
+            
 
-            while (true)
+            while (!_cancel)
             {
                 CheckQueue();
                 Thread.Sleep(RelayTimeout);
@@ -418,6 +443,12 @@ namespace JAM.Netduino3.App.Helpers
                 public bool StartValue { set; get; }
                 public bool Enabled { set; get; }
             }
+        }
+
+
+        public void IotRegistration()
+        {
+            Iot.Register(_ni, _apiServer, GetRelaysState());
         }
     }
 

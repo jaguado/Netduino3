@@ -17,7 +17,7 @@ namespace JAM.Netduino3.App
             try
             {
                 #if DEBUG
-                    //ApiServer = "http://iot.jamtech.cl:5000";
+                    ApiServer = "http://iot.jamtech.cl:5000";
                 #endif
 
                 Debug.EnableGCMessages(true);
@@ -41,7 +41,7 @@ namespace JAM.Netduino3.App
                 //Debug.Print("DDNS actualizado");
 
                 //Growcontrol init
-                var growControl = new GrowControl();
+                var growControl = new GrowControl(NI, ApiServer);
                 growControl.RunOnSeparateThread();
                 
                 //WebServer
@@ -51,11 +51,10 @@ namespace JAM.Netduino3.App
                 //Relays control handler
                 web.RegisterHandler("relayChange", new Handlers.RelaysChangeHandler(ref growControl));
                 web.RegisterHandler("relayRead", new Handlers.RelaysReadHandler(ref growControl));
+                web.RegisterHandler("Register", new Handlers.RegisterHandler(ref growControl));
                 web.Start();
 
-                //IoT Registration  
-                Register(NI);
-                
+                                
                 Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());
                 Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());
                 Blink(false);
@@ -74,18 +73,7 @@ namespace JAM.Netduino3.App
             Thread.Sleep(Timeout.Infinite);
         }
 
-        private static void Register(NetworkInterface NI)
-        {
-            try
-            {
-                var res = Iot.Register(NI.IPAddress, NI.PhysicalAddress, ApiServer);
-                Debug.Print("Registered: " + res);
-            }
-            catch (Exception ex)
-            {
-                Debug.Print("Error registering: " + ex.ToString() + Enviroment.NewLine + ex.StackTrace);
-            }
-        }
+       
         private static void Blink(bool error)
         {
             int waitTime = 300;
