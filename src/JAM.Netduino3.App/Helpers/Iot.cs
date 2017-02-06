@@ -12,7 +12,7 @@ namespace JAM.Netduino3.App.Helpers
             {
                 var content = GetJsonContent(NI, ApiServer, RelaysState);
                 NetHelper.HttpPost(ApiServer + "/api/Devices",content, "application/json", false);
-                Debug.Print("Registered");
+                Debug.Print("Registered at " + DateTime.Now.ToString());
             }
             catch (Exception ex)
             {

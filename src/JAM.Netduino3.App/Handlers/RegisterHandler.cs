@@ -15,7 +15,6 @@ namespace JAM.Netduino3.App.Handlers
             if (_growControl == null) return;
 
             _growControl.IotRegistration();
-
             pContext.Response.ResponseBody = Iot.GetJsonContent(_growControl._ni, _growControl._apiServer, _growControl.GetRelaysState());
             //TODO Add Response body!!
         }

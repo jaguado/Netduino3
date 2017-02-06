@@ -447,9 +447,30 @@ namespace JAM.Netduino3.App.Helpers
         }
 
 
+        Thread thRegistration = null;
+        public bool CancelRegistratinThread = false;
         public void IotRegistration()
         {
-            Iot.Register(_ni, _apiServer, GetRelaysState());
+            if (thRegistration == null)
+            {
+                //Register every 15 minutes
+                thRegistration = new Thread(new ThreadStart(() =>
+                {
+                    CancelRegistratinThread = false;
+                    while (!CancelRegistratinThread)
+                    {
+                        Iot.Register(_ni, _apiServer, GetRelaysState());
+                        Thread.Sleep(1000 * 60 * 15); //wait 15 minutes
+                    }
+                    thRegistration = null;
+                }));
+                thRegistration.Start();
+            }
+            else
+            {
+                //Register one time
+                Iot.Register(_ni, _apiServer, GetRelaysState());
+            }
         }
     }
 
