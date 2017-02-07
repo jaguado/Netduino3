@@ -45,6 +45,7 @@
     <Compile Include="Helpers\GrowControl.cs" />
     <Compile Include="Helpers\IO.cs" />
     <Compile Include="Helpers\Iot.cs" />
+    <Compile Include="Helpers\Log.cs" />
     <Compile Include="Helpers\Net.cs" />
     <Compile Include="Helpers\Ntp.cs" />
     <Compile Include="Helpers\Toolbox\StringDictionary.cs" />

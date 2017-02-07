@@ -288,6 +288,20 @@ function WinMove() {
         .disableSelection();
 }
 
+
+function loadDevices() {
+    $.ajax({
+        url: '/AppViews/Devices',
+        type: "POST",
+        dataType: "html",
+        success: function (data) {
+            //Fill div with results
+            $("#divDevices").html(data);
+        },
+        error: function () { alert('error'); }
+    });
+}
+
 function deviceRefresh(IP) {
     var settings = {
         "async": true,
@@ -298,8 +312,12 @@ function deviceRefresh(IP) {
 
     $.ajax(settings).done(function (response) {
         //update data
-        alert('TODO update data');
+        console.log('TODO update data of registered device');
     });
+}
+
+function devicesRefresh(IP) {
+    console.log('TODO deviceRefresh');
 }
 
 function changeState(index, IP, img) {

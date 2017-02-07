@@ -26,6 +26,12 @@ namespace Inspinia_MVC5.Controllers
             return View();
         }
 
+        public ActionResult Devices()
+        {
+            
+            return PartialView("~/Views/AppViews/Devices.cshtml", DevicesController.Devices);
+        }
+
 
         private static void DummyData()
         {

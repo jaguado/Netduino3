@@ -76,11 +76,12 @@ namespace JAM.Netduino3.App.Helpers
             try
             {
                 thControl.Start();
+                IotRegistration(); //Register on cloud service
             }
             catch (Exception e)
             {
                 var log = string.Concat(e.Message, "|", e.StackTrace);
-                Debug.Print(log);
+                Log.Print(log);
                 thControl.Abort();
                 throw;
             }
@@ -291,9 +292,6 @@ namespace JAM.Netduino3.App.Helpers
                 //    0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
                 //})
             };
-
-            //Register on cloud service
-            IotRegistration();
 
             while (!_cancel)
             {

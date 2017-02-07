@@ -3,7 +3,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://iot.jamtech.cl:5000",
+      "applicationUrl": "http://iot.jamtech.cl:8080",
       "sslPort": 0
     }
   },

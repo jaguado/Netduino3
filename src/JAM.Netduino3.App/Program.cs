@@ -11,13 +11,13 @@ namespace JAM.Netduino3.App
 {
     public class Program
     {
-        private static string ApiServer = "https://growcontrol.herokuapp.com";
+        private static string ApiServer = "http://iot.growcontrol.cl";
         public static void Main()
         {
             try
             {
                 #if DEBUG
-                   // ApiServer = "http://iot.jamtech.cl:5000";
+                    //ApiServer = "http://iot.jamtech.cl:8080";
                 #endif
 
                 Debug.EnableGCMessages(true);
@@ -34,7 +34,7 @@ namespace JAM.Netduino3.App
 
                 //Update date and time
                 var timeUpdated = Ntp.UpdateTimeFromNtpServer(config[ConfigConstants.NtpServer], int.Parse(config[ConfigConstants.TimeZone]));
-                Debug.Print("Fecha y hora: " + DateTime.Now);
+                Log.Print("Fecha y hora: " + DateTime.Now);
 
                 //Update DDNS
                 //Helpers.DDNS.ActualizarDNS(config[ConfigConstants.DdnsUpdateUrl]);
@@ -46,7 +46,7 @@ namespace JAM.Netduino3.App
                 
                 //WebServer
                 var web = new Web(int.Parse(config[ConfigConstants.WebServerPort]), false);
-                Debug.Print("WebServer iniciado en http://" + web.Ip + ":" + web.Port);
+                Log.Print("WebServer iniciado en http://" + web.Ip + ":" + web.Port);
 
                 //Relays control handler
                 web.RegisterHandler("relayChange", new Handlers.RelaysChangeHandler(ref growControl));
@@ -54,22 +54,22 @@ namespace JAM.Netduino3.App
                 web.RegisterHandler("Register", new Handlers.RegisterHandler(ref growControl));
                 web.Start();
 
-                                
-                Debug.Print("Memoria disponible: " + Debug.GC(false).ToString());
+
+                Log.Print("Memoria disponible: " + Debug.GC(false).ToString());
                 Blink(false);
             }
             catch(Exception ex)
             {
                 var httpEx = ex as EmbeddedWebserver.Core.HttpException;
                 if (httpEx!=null)
-                    Debug.Print("Web server error: " + httpEx.ErrorCode.ToString());
+                    Log.Print("Web server error: " + httpEx.ErrorCode.ToString());
                 else
-                    Debug.Print("Init error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
+                    Log.Print("Init error: " + ex.Message + Enviroment.NewLine + "Stacktrace: " + ex.StackTrace);
                 Blink(true);
             }
 
-            Debug.Print("Memoria disponible: " + Debug.GC(true).ToString());
-            Debug.Print("Going to sleep");
+            Log.Print("Memoria disponible: " + Debug.GC(true).ToString());
+            Log.Print("Going to sleep");
             Thread.Sleep(Timeout.Infinite);
         }
 
@@ -102,7 +102,7 @@ namespace JAM.Netduino3.App
                     Thread.Sleep(waitTime);
                 }
             }
-            Debug.Print("LED state: " + onboardLED.Read());
+            Log.Print("LED state: " + onboardLED.Read());
         }
     }
 }
