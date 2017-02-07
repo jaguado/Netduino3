@@ -1,6 +1,12 @@
 ﻿using JAM.Netduino3.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using RestSharp;
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace Inspinia_MVC5.Controllers
 {
@@ -20,33 +26,43 @@ namespace Inspinia_MVC5.Controllers
         public ActionResult Management()
         {
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
-                DummyData();
+            {
+                var task = LoadCloudDevices();
+                task.Wait();
+            }
+            return View(DevicesController.Devices);
+        }
 
-            ViewBag.Devices = DevicesController.Devices;
-            return View();
+        private static bool loadDevices = false;
+        public async Task LoadCloudDevices()
+        {
+            var client = new RestClient("http://iot.growcontrol.cl/api/devices");
+            var request = new RestRequest(Method.GET);
+            request.AddHeader("cache-control", "no-cache");
+
+            loadDevices = true;
+            var asyncHandler = client.ExecuteAsync<List<JAM.Netduino3.Web.Models.Device>>(request, r =>
+            {
+                DevicesController.Devices = JsonConvert.DeserializeObject<ConcurrentBag<JAM.Netduino3.Web.Models.Device>>(r.Content);
+                loadDevices = false;
+            });
+            while (loadDevices)
+            {
+
+            }
         }
 
         public ActionResult Devices()
         {
-            
+            if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")
+            {
+                var task = LoadCloudDevices();
+                task.Wait();
+            }
+
             return PartialView("~/Views/AppViews/Devices.cshtml", DevicesController.Devices);
         }
 
-
-        private static void DummyData()
-        {
-            //Dummy Devices
-            if (DevicesController.Devices.Count == 0)
-            {
-                DevicesController.Devices.Add(new JAM.Netduino3.Web.Models.Device
-                {
-                    IP = "192.168.0.13",
-                    MAC = "00:00:00:00:00",
-                    RelaysState=new bool[9]
-                });
-            }
-
-        }
 
         public ActionResult ProjectDetail()
         {

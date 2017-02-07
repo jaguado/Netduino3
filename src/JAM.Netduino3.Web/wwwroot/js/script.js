@@ -290,6 +290,7 @@ function WinMove() {
 
 
 function loadDevices() {
+    console.log('loadDevices');
     $.ajax({
         url: '/AppViews/Devices',
         type: "POST",
@@ -314,10 +315,6 @@ function deviceRefresh(IP) {
         //update data
         console.log('TODO update data of registered device');
     });
-}
-
-function devicesRefresh(IP) {
-    console.log('TODO deviceRefresh');
 }
 
 function changeState(index, IP, img) {
