@@ -293,7 +293,7 @@ function loadDevices() {
     console.log('loadDevices');
     $.ajax({
         url: '/AppViews/Devices',
-        type: "POST",
+        type: "GET",
         dataType: "html",
         success: function (data) {
             //Fill div with results
@@ -313,7 +313,8 @@ function deviceRefresh(IP) {
 
     $.ajax(settings).done(function (response) {
         //update data
-        console.log('TODO update data of registered device');
+        console.log('update registered device');
+        loadDevices();
     });
 }
 
