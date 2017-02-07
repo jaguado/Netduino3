@@ -13,7 +13,7 @@ namespace JAM.Netduino3.App.Helpers
             LogPath = @"SD\webroot\log\";
             if (!Directory.Exists(LogPath))
                 Directory.CreateDirectory(LogPath);
-            LogPath += "growcontrol_" + DateTime.Now.ToString("yyyyMMdd") + ".log";
+            LogPath += "growcontrol_" + DateTime.Now.ToString("yyyyMMddhhmm") + ".log";
             firstTime = false;
         }
 
